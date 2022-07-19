@@ -23,6 +23,12 @@ const playerFactory = (name, symbol) => {
 
 const GameFlow = (() => {
 
+
+})();
+
+
+const DisplayController = (() => {
+
     const cells = document.querySelectorAll('.cell');
 
     const addPieceToGameBoard = () => {
@@ -37,6 +43,5 @@ const GameFlow = (() => {
     return {addPieceToGameBoard};
 })();
 
-GameFlow.addPieceToGameBoard();
 
-Gameboard.getArrayLength();
+DisplayController.addPieceToGameBoard();
