@@ -29,18 +29,21 @@ const GameFlow = (() => {
 
 const DisplayController = (() => {
 
-    const cells = document.querySelectorAll('.cell');
+    const _cells = document.querySelectorAll('.cell');
 
-    const addPieceToGameBoard = () => {
+    const addPieceToGameboard = () => {
         for(let i=0;i<Gameboard.getArrayLength();i++){
             if(Gameboard.getArrayPosition(i) !== ""){
-                cells[i].textContent = Gameboard.getArrayPosition(i);
+                _cells[i].textContent = Gameboard.getArrayPosition(i);
             }
         }
     }
 
-    return {addPieceToGameBoard};
+    _cells.forEach(cell => cell.addEventListener('click', (event) => {
+        addPieceToGameboard();
+    }))
+
+
+
+    return {addPieceToGameboard};
 })();
-
-
-DisplayController.addPieceToGameBoard();
