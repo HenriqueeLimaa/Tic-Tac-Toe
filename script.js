@@ -33,8 +33,7 @@ const DisplayController = (() => {
 
     const addPieceToGameBoard = () => {
         for(let i=0;i<Gameboard.getArrayLength();i++){
-            if(Gameboard.getArrayPosition(i) !== null){
-                console.log('FOI');
+            if(Gameboard.getArrayPosition(i) !== ""){
                 cells[i].textContent = Gameboard.getArrayPosition(i);
             }
         }
