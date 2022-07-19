@@ -1,12 +1,17 @@
 const Gameboard = (() => { 
-    let gameboard = [];
+    let _gameboardArray = ['X', "", "O", "", "", "", "", "", ""];
 
-    const addPieceIntoArray = (symbol, position) => {
-        gameboard[position].push(symbol);
+    const getArrayPosition = (position) => {
+        return _gameboardArray[position];
     }
 
-    return {addPieceIntoArray};
+    const getArrayLength = () => {
+        return _gameboardArray.length;
+    }
+
+    return {getArrayPosition, getArrayLength};
 })();
+
 
 const playerFactory = (name, symbol) => {
     const getName = () => {return name};
@@ -15,13 +20,23 @@ const playerFactory = (name, symbol) => {
     return {getName, getSymbol};
 }
 
+
 const GameFlow = (() => {
-    const gameboardObj = Gameboard();
 
-    const addPieceToGameBoard = (position) => {
-        const gameboardReference = document.getElementsByClassName('gameboard');
+    const cells = document.querySelectorAll('.cell');
 
+    const addPieceToGameBoard = () => {
+        for(let i=0;i<Gameboard.getArrayLength();i++){
+            if(Gameboard.getArrayPosition(i) !== null){
+                console.log('FOI');
+                cells[i].textContent = Gameboard.getArrayPosition(i);
+            }
+        }
     }
 
-    return {};
+    return {addPieceToGameBoard};
 })();
+
+GameFlow.addPieceToGameBoard();
+
+Gameboard.getArrayLength();
