@@ -1,3 +1,7 @@
+:root {
+    font-size: 10vw;
+}
+
 body {
     display: flex;
     justify-content: center;

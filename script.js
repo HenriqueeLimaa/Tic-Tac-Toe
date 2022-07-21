@@ -1,5 +1,6 @@
 const Gameboard = (() => {
   let _gameboardArray = ["", "", "", "", "", "", "", "", ""];
+  let i = 0;
 
   const getArrayPosition = (position) => {
     return _gameboardArray[position];
@@ -10,12 +11,19 @@ const Gameboard = (() => {
   };
 
   const addPieceIntoArray = (position, symbol) => {
-    if (position < getArrayLength()) {
-      _gameboardArray.splice(position, 1, symbol);
+    if (position < getArrayLength() && getArrayPosition(position) === "") {
+      i % 2 === 0
+        ? _gameboardArray.splice(position, 1, "X")
+        : _gameboardArray.splice(position, 1, "O");
+      i++;
     }
   };
 
-  return { getArrayPosition, getArrayLength, addPieceIntoArray };
+  const displayArray = () => {
+    return _gameboardArray;
+  }  
+
+  return { getArrayPosition, getArrayLength, addPieceIntoArray, displayArray };
 })();
 
 ////////////
@@ -36,11 +44,11 @@ const playerFactory = (name, symbol) => {
 const DisplayController = (() => {
   const cells = document.querySelectorAll(".cell");
 
-  const displayIntoGameboard = (playerSymbol) => {
+  const displayIntoGameboard = () => {
     cells.forEach((cell) =>
       cell.addEventListener("click", (event) => {
         let cellClassName = cell.className.slice(-1);
-        Gameboard.addPieceIntoArray(cellClassName, playerSymbol);
+        Gameboard.addPieceIntoArray(cellClassName);
         addPieceToGameboard();
       })
     );
@@ -60,19 +68,8 @@ const DisplayController = (() => {
 //////////
 
 const GameFlow = (() => {
-  let i = 0;
-
   const player1 = playerFactory("p1", "X");
   const player2 = playerFactory("p2", "O");
 
-  DisplayController.cells.forEach((cell) =>
-    addEventListener("click", () => {
-      if (i % 2 === 0) {
-        DisplayController.displayIntoGameboard(player1.getSymbol());
-      } else {
-        DisplayController.displayIntoGameboard(player2.getSymbol());
-      }
-      i++;
-    })
-  );
+  DisplayController.displayIntoGameboard();
 })();
