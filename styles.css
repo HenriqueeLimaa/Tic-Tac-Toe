@@ -1,16 +1,44 @@
 :root {
-    font-size: 5vw;
+    font-family: 'Press Start 2P', cursive;
 }
 
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
 
     height: 100vh;
     width: 100vw;
+
+    background: rgb(12,6,105);
+    background: linear-gradient(0deg, rgba(12,6,105,1) 0%, rgba(16,16,164,1) 35%, rgba(0,212,255,1) 100%);
 }
 
+
+.body {
+    display: flex;
+}
+
+input:focus {
+    outline: none;
+}
+
+/*  */
+
+.input-player {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+.title {
+    font-size: clamp(2rem, -0.2857rem + 3.5714vw, 4rem);
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red); 
+    -webkit-background-clip: text;
+    color: transparent;
+}
 /*  */
 
 .cell {
@@ -19,6 +47,7 @@ body {
     align-items: center;
     
     border: 1px solid black;
+    font-size: 5vw;
 }
 
 /*  */
@@ -54,4 +83,15 @@ body {
     width: 30vw;
 
     margin-bottom: 5vh;
+
+    margin: 0 3rem;
+
+    background-color: aliceblue;
+}
+
+@media (max-width: 1024px){
+    .gameboard {
+        height: 50vw;
+        width: 50vw;
+    }
 }
