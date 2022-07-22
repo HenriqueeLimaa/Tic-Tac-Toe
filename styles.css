@@ -1,11 +1,11 @@
 :root {
-    font-size: 10vw;
+    font-size: 5vw;
 }
 
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 
     height: 100vh;
     width: 100vw;
@@ -50,6 +50,8 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
 
-    height: 40vw;
-    width: 40vw;
+    height: 30vw;
+    width: 30vw;
+
+    margin-bottom: 5vh;
 }

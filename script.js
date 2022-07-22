@@ -1,6 +1,16 @@
 const Gameboard = (() => {
   let _gameboardArray = ["", "", "", "", "", "", "", "", ""];
   let i = 0;
+  const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+  ];
 
   const getArrayPosition = (position) => {
     return _gameboardArray[position];
@@ -10,8 +20,13 @@ const Gameboard = (() => {
     return _gameboardArray.length;
   };
 
-  const addPieceIntoArray = (position, symbol) => {
-    if (position < getArrayLength() && getArrayPosition(position) === "") {
+  const addPieceIntoArray = (position) => {
+    if (
+      position < getArrayLength() &&
+      getArrayPosition(position) === "" &&
+      checkTie() === false &&
+      checkVictory() === false
+    ) {
       i % 2 === 0
         ? _gameboardArray.splice(position, 1, "X")
         : _gameboardArray.splice(position, 1, "O");
@@ -21,9 +36,45 @@ const Gameboard = (() => {
 
   const displayArray = () => {
     return _gameboardArray;
-  }  
+  };
 
-  return { getArrayPosition, getArrayLength, addPieceIntoArray, displayArray };
+  const allEqual = (arr) => arr.every((val) => val === arr[0] && arr[0] !== "");
+
+  const checkVictory = () => {
+    let array = [];
+    for (let combination of winningCombinations) {
+      array = [
+        _gameboardArray[combination[0]],
+        _gameboardArray[combination[1]],
+        _gameboardArray[combination[2]],
+      ];
+      if (allEqual(array)) {
+        return true;
+      }
+    }
+    return allEqual(array);
+  };
+
+  const checkTie = () => {
+    let count = 0;
+    for (let pos of _gameboardArray) {
+      if (pos !== "") {
+        count += 1;
+      }
+
+      if (count === 9) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  return {
+    getArrayPosition,
+    getArrayLength,
+    addPieceIntoArray,
+    displayArray,
+  };
 })();
 
 ////////////
