@@ -79,15 +79,13 @@ const Gameboard = (() => {
 
 ////////////
 
-const playerFactory = (name, symbol) => {
+const playerFactory = (name) => {
+
   const getName = () => {
     return name;
   };
-  const getSymbol = () => {
-    return symbol;
-  };
 
-  return { getName, getSymbol };
+  return { getName,  };
 };
 
 ///////////
@@ -113,14 +111,30 @@ const DisplayController = (() => {
     }
   };
 
+  const DisplayMatchResult = () => {
+    
+  }
+
   return { cells, addPieceToGameboard, displayIntoGameboard };
 })();
 
 //////////
 
 const GameFlow = (() => {
-  const player1 = playerFactory("p1", "X");
-  const player2 = playerFactory("p2", "O");
+
+  const startButton = document.getElementsByClassName('start-button')[0];
+  const playerXinput = document.getElementById('player1');
+  const playerOinput = document.getElementById('player2');
+
+  startButton.addEventListener('click', () => {
+    if(playerXinput.value !== "" && playerOinput.value !== ""){
+      const player1 = playerFactory(playerXinput.value);
+      const player2 = playerFactory(playerOinput.value);
+
+
+    }
+  })
+
 
   DisplayController.displayIntoGameboard();
 })();
