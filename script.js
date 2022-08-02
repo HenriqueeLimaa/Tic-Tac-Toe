@@ -69,23 +69,27 @@ const Gameboard = (() => {
     return false;
   };
 
+  const restartGame = () => {
+    _gameboardArray = ["", "", "", "", "", "", "", "", ""];
+  };
+
   return {
     getArrayPosition,
     getArrayLength,
     addPieceIntoArray,
     displayArray,
+    restartGame,
   };
 })();
 
 ////////////
 
 const playerFactory = (name) => {
-
   const getName = () => {
     return name;
   };
 
-  return { getName,  };
+  return { getName };
 };
 
 ///////////
@@ -111,30 +115,38 @@ const DisplayController = (() => {
     }
   };
 
-  const DisplayMatchResult = () => {
-    
-  }
+  const resetGameboard = () => {
+    for (let i = 0; i < Gameboard.getArrayLength(); i++) {
+        cells[i].textContent = "";
+    }
+  };
 
-  return { cells, addPieceToGameboard, displayIntoGameboard };
+  const DisplayMatchResult = () => {};
+
+  return { cells, addPieceToGameboard, displayIntoGameboard, resetGameboard };
 })();
 
 //////////
 
 const GameFlow = (() => {
+  const startButton = document.getElementsByClassName("start-button")[0];
+  const restartButton = document.getElementsByClassName("restart-button")[0];
+  const playerXinput = document.getElementById("player1");
+  const playerOinput = document.getElementById("player2");
 
-  const startButton = document.getElementsByClassName('start-button')[0];
-  const playerXinput = document.getElementById('player1');
-  const playerOinput = document.getElementById('player2');
-
-  startButton.addEventListener('click', () => {
-    if(playerXinput.value !== "" && playerOinput.value !== ""){
+  startButton.addEventListener("click", () => {
+    if (playerXinput.value !== "" && playerOinput.value !== "") {
       const player1 = playerFactory(playerXinput.value);
       const player2 = playerFactory(playerOinput.value);
 
-
+      DisplayController.displayIntoGameboard();
     }
-  })
+  });
 
-
-  DisplayController.displayIntoGameboard();
+  restartButton.addEventListener("click", () => {
+    playerXinput.value = "";
+    playerOinput.value = "";
+    Gameboard.restartGame();
+    DisplayController.resetGameboard();
+  });
 })();

@@ -8,7 +8,7 @@ body {
     justify-content: center;
     align-items: center;
 
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
 
     background: rgb(12,6,105);
@@ -51,6 +51,10 @@ input:focus {
     font-size: 5vw;
 }
 
+.cell:hover {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
+}
+
 /*  */
 
 .cell:first-child,
@@ -80,8 +84,8 @@ input:focus {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
 
-    height: 30vw;
-    width: 30vw;
+    height: 30rem;
+    width: 30rem;
 
     margin-bottom: 5vh;
 
@@ -97,7 +101,7 @@ input:focus {
     }
 }
 
-.start-button {
+.start-button, .restart-button {
     padding: 0.75rem 1.5rem;
     margin-bottom: 1.5rem;
 
@@ -109,3 +113,14 @@ input:focus {
     border: 0.15rem solid grey;
     border-radius: 0.5rem;
 }
+
+.start-button:hover, .restart-button:hover {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
+}
+.restart-button {
+    margin-top: 1rem;
+}
+
+/* #player1:hover, #player2:hover {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+} */
