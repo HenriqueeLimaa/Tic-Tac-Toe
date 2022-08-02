@@ -96,13 +96,16 @@ const playerFactory = (name) => {
 
 const DisplayController = (() => {
   const cells = document.querySelectorAll(".cell");
+  let i = 0;
 
-  const displayIntoGameboard = () => {
+  const displayIntoGameboard = (player1Name, player2Name) => {
     cells.forEach((cell) =>
       cell.addEventListener("click", (event) => {
+        i++;
         let cellClassName = cell.className.slice(-1);
         Gameboard.addPieceIntoArray(cellClassName);
         addPieceToGameboard();
+        DisplayMatchResult(player1Name, player2Name);
       })
     );
   };
@@ -121,9 +124,16 @@ const DisplayController = (() => {
     }
   };
 
-  const DisplayMatchResult = () => {};
+  const DisplayMatchResult = (player1Name, player2Name) => {
+    const caption = document.querySelector('.caption');
+    caption.textContent = "";
 
-  return { cells, addPieceToGameboard, displayIntoGameboard, resetGameboard };
+    if(i < Gameboard.getArrayLength()){
+      i % 2 === 0 ? caption.textContent = "Player " + player1Name + " turn!" : caption.textContent = "Player " + player2Name + " turn!";
+    }
+  };
+
+  return { cells, addPieceToGameboard, displayIntoGameboard, resetGameboard, DisplayMatchResult };
 })();
 
 //////////
@@ -139,7 +149,8 @@ const GameFlow = (() => {
       const player1 = playerFactory(playerXinput.value);
       const player2 = playerFactory(playerOinput.value);
 
-      DisplayController.displayIntoGameboard();
+      DisplayController.DisplayMatchResult(player1.getName(), player2.getName());
+      DisplayController.displayIntoGameboard(player1.getName(), player2.getName());
     }
   });
 
@@ -149,4 +160,5 @@ const GameFlow = (() => {
     Gameboard.restartGame();
     DisplayController.resetGameboard();
   });
+
 })();
