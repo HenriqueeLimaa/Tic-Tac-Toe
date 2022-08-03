@@ -10,9 +10,8 @@ body {
 
     min-height: 100vh;
     width: 100vw;
-
-    background: rgb(12,6,105);
-    background: linear-gradient(0deg, rgba(12,6,105,1) 0%, rgba(16,16,164,1) 35%, rgba(0,212,255,1) 100%);
+    
+    background: linear-gradient(0deg, rgb(97, 97, 97) 0%, rgb(132, 132, 132) 35%, rgb(160, 160, 160) 100%);
 }
 
 
@@ -117,6 +116,7 @@ input:focus {
 .start-button:hover, .restart-button:hover {
     background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0 0);
 }
+
 .restart-button {
     margin-top: 1rem;
 }
@@ -125,6 +125,3 @@ input:focus {
     font-size: 1.5rem;
 }
 
-/* #player1:hover, #player2:hover {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
-} */

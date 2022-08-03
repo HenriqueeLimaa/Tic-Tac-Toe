@@ -1,6 +1,7 @@
 const Gameboard = (() => {
   let _gameboardArray = ["", "", "", "", "", "", "", "", ""];
   let i = 0;
+  const caption = document.getElementsByClassName('caption')[0];
   const winningCombinations = [
     [0, 1, 2],
     [3, 4, 5],
@@ -49,6 +50,8 @@ const Gameboard = (() => {
         _gameboardArray[combination[2]],
       ];
       if (allEqual(array)) {
+        i % 2 === 0 ? caption.textContent = "Player O win!" : caption.textContent = "Player X win!";
+        
         return true;
       }
     }
@@ -79,6 +82,7 @@ const Gameboard = (() => {
     addPieceIntoArray,
     displayArray,
     restartGame,
+    checkVictory
   };
 })();
 
@@ -130,6 +134,9 @@ const DisplayController = (() => {
 
     if(i < Gameboard.getArrayLength()){
       i % 2 === 0 ? caption.textContent = "Player " + player1Name + " turn!" : caption.textContent = "Player " + player2Name + " turn!";
+    }
+    if(Gameboard.checkVictory() === true){
+      caption.textContent = player
     }
   };
 
